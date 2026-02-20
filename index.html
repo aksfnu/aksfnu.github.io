@@ -2,140 +2,469 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>aksfnu | Portfolio</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Ashutosh Kumar | Portfolio</title>
 
-  <!-- Load Montserrat -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    body {
-      margin: 0;
-      font-family: 'Montserrat', sans-serif;
-      background-color: #111;
-      color: #fff;
+    :root{
+      --bg:#000;
+      --panel:#0f0f0f;
+      --text:#fff;
+      --muted:rgba(255,255,255,.78);
+      --line:rgba(255,255,255,.55);
+      --accent:#00c6ff;
+      --shadow: 0 18px 60px rgba(0,0,0,.55);
     }
 
-    .hero {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      padding: 0 20px;
-      text-align: center;
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    html{ scroll-behavior:smooth; }
+    body{
+      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(80% 90% at 70% 20%, rgba(255,255,255,.08), transparent 55%),
+                  radial-gradient(70% 80% at 15% 30%, rgba(0,198,255,.10), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      overflow-x:hidden;
     }
 
-    .hero-content {
-      max-width: 800px;
+    /* ===== NAV ===== */
+    .nav{
+      position:fixed;
+      top:0; left:0; right:0;
+      z-index:999;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:18px 28px;
+      background: rgba(0,0,0,.55);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,.08);
     }
+    .brand{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      min-width:180px;
+    }
+    .brand .site-name{
+      font-size:14px;
+      color:rgba(255,255,255,.55);
+      letter-spacing:.2px;
+    }
+    .brand .logo-btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 12px;
+      border-radius:10px;
+      width:max-content;
+      border:1px solid rgba(255,255,255,.15);
+      background:rgba(255,255,255,.06);
+      color:rgba(255,255,255,.85);
+      font-size:14px;
+      text-decoration:none;
+    }
+    .brand .logo-btn:hover{ background:rgba(255,255,255,.10); }
 
-    .name {
-      font-size: 48px;
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+    .nav-links a{
+      color:rgba(255,255,255,.90);
+      text-decoration:none;
+      font-weight:500;
+      transition:.2s ease;
+    }
+    .nav-links a:hover{ color:#fff; text-shadow: 0 0 18px rgba(0,198,255,.35); }
+
+    /* ===== LAYOUT ===== */
+    section{ width:100%; }
+    .wrap{
+      max-width:1200px;
+      margin:0 auto;
+      padding:0 22px;
+    }
+    .spacer-top{ height:82px; } /* to offset fixed nav */
+
+    /* ===== HERO ===== */
+    .hero{
+      min-height: calc(100vh - 82px);
+      display:flex;
+      align-items:center;
+      padding: 26px 0 44px;
+    }
+    .hero-grid{
+      width:100%;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 36px;
+      align-items:center;
+    }
+    .hero h1{
+      font-size: clamp(44px, 5vw, 72px);
       font-weight: 700;
-      margin: 0 0 10px;
-      color: #fff;
+      line-height: 1.03;
+      letter-spacing: .2px;
+      margin-bottom: 18px;
+    }
+    .hero .subtitle{
+      font-size: clamp(16px, 1.6vw, 22px);
+      line-height: 1.55;
+      color: var(--muted);
+      max-width: 640px;
+    }
+    .hl{
+      color: #22d3ee; /* teal-ish like screenshot */
+      font-weight: 650;
+    }
+    .hero-right{
+      display:flex;
+      justify-content:center;
+      align-items:center;
+    }
+    .portrait{
+      width:min(420px, 85vw);
+      aspect-ratio: 1/1.15;
+      border-radius: 22px;
+      overflow:hidden;
+      box-shadow: var(--shadow);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      position:relative;
+    }
+    .portrait img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center;
+      display:block;
+      filter: contrast(1.02) saturate(1.02);
+    }
+    .portrait::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(70% 90% at 50% 20%, transparent 40%, rgba(0,0,0,.35) 100%);
+      pointer-events:none;
     }
 
-    .tagline {
-      font-size: 20px;
-      font-weight: 400;
-      margin: 0 0 40px;
-      color: #fff;
-      opacity: 0.9;
-      line-height: 1.5;
+    .down-arrow{
+      display:flex;
+      justify-content:center;
+      padding: 6px 0 24px;
+      opacity:.8;
+    }
+    .down-arrow a{
+      width:44px; height:44px;
+      display:grid; place-items:center;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(255,255,255,.05);
+      text-decoration:none;
+      color:#fff;
+      transition:.2s ease;
+    }
+    .down-arrow a:hover{ transform: translateY(2px); background:rgba(255,255,255,.09); }
+
+    /* ===== SEPARATOR SECTION STYLE ===== */
+    .section-pad{
+      padding: 56px 0 70px;
+      position:relative;
+    }
+    .section-pad::before,
+    .section-pad::after{
+      content:"";
+      position:absolute;
+      left:0; right:0;
+      height:2px;
+      background: var(--line);
+      opacity:.85;
+    }
+    .section-pad::before{ top:0; }
+    .section-pad::after{ bottom:0; }
+
+    .section-title{
+      text-align:center;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight:700;
+      margin-bottom: 10px;
+    }
+    .section-subtitle{
+      text-align:center;
+      color: var(--muted);
+      font-size: 16px;
+      margin-bottom: 34px;
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #004e92, #0a74da, #16c3a8, #6a11cb);
-      background-size: 300% 300%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    /* ===== AFFILIATIONS PILLS ===== */
+    .pill-grid{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(240px, 1fr));
+      gap:18px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .pill{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding: 16px 18px;
+      border-radius: 14px;
+      font-weight: 650;
+      color:#fff;
+      text-decoration:none;
+      box-shadow: 0 10px 25px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      transition: .2s ease;
+    }
+    .pill:hover{ transform: translateY(-2px); filter: brightness(1.04); }
+
+    .pill.teal { background: linear-gradient(90deg, #006d77, #007f6a); }
+    .pill.red  { background: linear-gradient(90deg, #7a0f0f, #b11212); }
+    .pill.gray { background: linear-gradient(90deg, #3b3f46, #555a63); }
+    .pill.navy { background: linear-gradient(90deg, #0b2b52, #103c72); }
+    .pill.blue { background: linear-gradient(90deg, #0a3b8f, #0a5bd6); }
+
+    .pill.full{
+      grid-column: 1 / -1;
+      max-width: 520px;
+      margin: 0 auto;
+    }
+
+    /* ===== WORKED WITH LOGOS ===== */
+    .logos{
+      display:grid;
+      grid-template-columns: repeat(4, minmax(160px, 1fr));
+      gap: 24px;
+      align-items:center;
+      justify-items:center;
+      max-width: 1050px;
+      margin: 22px auto 0;
+    }
+    .logo-card{
+      width: 100%;
+      max-width: 260px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.12);
+      box-shadow: 0 12px 35px rgba(0,0,0,.35);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height: 92px;
+    }
+    .logo-card img{
+      max-width: 100%;
+      max-height: 56px;
+      object-fit:contain;
+      display:block;
+      filter: brightness(1.02);
+    }
+
+    /* ===== CONTACT STRIP ===== */
+    .contact-row{
+      display:grid;
+      grid-template-columns: repeat(3, minmax(220px, 1fr));
+      gap: 18px;
+      max-width: 980px;
+      margin: 26px auto 0;
+    }
+    .contact-chip{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      box-shadow: 0 12px 35px rgba(0,0,0,.35);
+    }
+    .icon{
+      width: 36px; height: 36px;
+      display:grid; place-items:center;
+      border-radius: 10px;
+      background: rgba(0,198,255,.12);
+      border: 1px solid rgba(0,198,255,.20);
+      flex: 0 0 auto;
+    }
+    .contact-chip a,
+    .contact-chip span{
+      color:#fff;
+      text-decoration:none;
       font-weight: 600;
-      animation: gradientFlow 8s ease infinite;
+      letter-spacing: .2px;
+    }
+    .contact-chip a:hover{ text-decoration:underline; }
+
+    /* ===== THANK YOU ===== */
+    .thanks{
+      text-align:center;
+      font-size: clamp(34px, 4vw, 64px);
+      font-weight: 750;
+      color: #ff3b30;
+      margin-top: 34px;
+      letter-spacing: .2px;
     }
 
-    @keyframes gradientFlow {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    .button-row {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: nowrap; /* keeps them side by side */
-    }
-
-    .btn {
-      text-decoration: none;
-      padding: 12px 20px;
-      border-radius: 8px;
-      font-size: 15px;
-      font-weight: 600;
-      width: 180px;     /* same length */
-      text-align: center;
-      transition: all 0.3s ease;
-      display: inline-block;
-    }
-
-    .btn.primary {
-      background: linear-gradient(90deg, #004e92, #0a74da);
-      color: #fff;
-    }
-
-    .btn.primary:hover {
-      opacity: 0.9;
-      transform: scale(1.05);
-    }
-
-    .btn.secondary {
-      border: 2px solid #fff;
-      color: #fff;
-      background: transparent;
-    }
-
-    .btn.secondary:hover {
-      background: #fff;
-      color: #2f2f2f;
-    }
-
-    /* Mobile tweaks */
-    @media (max-width: 520px) {
-      .name { font-size: 36px; }
-      .tagline { font-size: 16px; margin-bottom: 28px; }
-      .button-row { flex-wrap: wrap; }
-      .btn { width: 100%; max-width: 260px; }
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 980px){
+      .hero-grid{ grid-template-columns: 1fr; }
+      .hero-right{ order:-1; }
+      .brand{ display:none; } /* like your Google Sites screenshot: left area can be empty */
+      .nav{ justify-content:flex-end; }
+      .logos{ grid-template-columns: repeat(2, minmax(160px, 1fr)); }
+      .pill-grid{ grid-template-columns: 1fr; }
+      .pill.full{ max-width: 100%; }
+      .contact-row{ grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
-  <div class="hero">
-    <div class="hero-content">
-      <h1 class="name">Ashutosh Kumar</h1>
+  <!-- NAV -->
+  <header class="nav">
+    <!-- Left brand area (optional). You can customize or remove. -->
+    <div class="brand">
+      <div class="site-name">Enter site name</div>
+      <a class="logo-btn" href="#home" aria-label="Home">
+        <span style="display:inline-block;width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.25)"></span>
+        Add logo
+      </a>
+    </div>
 
-      <p class="tagline">
-        Advancing <span class="gradient-text">AI-Driven Modeling</span>,
-        <span class="gradient-text">Nanotechnology</span>, and
-        <span class="gradient-text">Microfluidics</span>
-      </p>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Google Scholar</a>
+      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+    </nav>
+  </header>
 
-      <div class="button-row">
-        <a class="btn primary" href="https://github.com/aksfnu" target="_blank" rel="noopener noreferrer">
-          View My GitHub
-        </a>
-        <a class="btn secondary" href="#projects">
-          View Projects
-        </a>
+  <div class="spacer-top"></div>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="wrap">
+      <div class="hero-grid">
+        <div>
+          <h1>Ashutosh<br/>Kumar</h1>
+          <p class="subtitle">
+            Advancing <span class="hl">AI-Driven Modeling</span>, <br/>
+            <span class="hl">Nanotechnology</span>, and <span class="hl">Microfluidics</span>
+          </p>
+        </div>
+
+        <div class="hero-right">
+          <div class="portrait">
+            <!-- Put your image in the repo and set the path here.
+                 Example: create a folder "assets" and upload "portrait.jpg"
+                 Then use: assets/portrait.jpg -->
+            <img src="assets/portrait.jpg" alt="Portrait" />
+          </div>
+        </div>
       </div>
     </div>
+  </section>
+
+  <div class="down-arrow">
+    <a href="#affiliation" aria-label="Scroll down">⌄</a>
   </div>
 
-  <!-- Optional placeholder section so the "View Projects" button scrolls somewhere -->
-  <div id="projects" style="padding: 80px 20px; max-width: 900px; margin: 0 auto;">
-    <h2 style="margin: 0 0 10px;">Projects</h2>
-    <p style="opacity: 0.85; margin: 0;">Add your projects here (cards, links, etc.).</p>
-  </div>
+  <!-- ABOUT (optional section content; keep as placeholder) -->
+  <section id="about" class="section-pad">
+    <div class="wrap">
+      <h2 class="section-title">About</h2>
+      <p class="section-subtitle">Short bio / research interests / summary.</p>
+
+      <div style="max-width:900px;margin:0 auto;color:var(--muted);line-height:1.7;text-align:center;">
+        Replace this text with your own bio. Keep it concise: 3–6 sentences describing your role, focus areas,
+        and what you are currently building/researching.
+      </div>
+    </div>
+  </section>
+
+  <!-- ACADEMIC AFFILIATION -->
+  <section id="affiliation" class="section-pad">
+    <div class="wrap">
+      <h2 class="section-title">Academic Affiliation</h2>
+      <p class="section-subtitle">Institutions I have studied or trained</p>
+
+      <div class="pill-grid">
+        <a class="pill teal" href="#" target="_blank" rel="noopener noreferrer">Texas A&amp;M University</a>
+        <a class="pill red" href="#" target="_blank" rel="noopener noreferrer">Cornell University</a>
+        <a class="pill gray" href="#" target="_blank" rel="noopener noreferrer">FDA – National Center for Toxicological Research</a>
+        <a class="pill navy" href="#" target="_blank" rel="noopener noreferrer">University of Rhode Island</a>
+        <a class="pill blue full" href="#" target="_blank" rel="noopener noreferrer">University of Texas at Arlington</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS (placeholder) -->
+  <section id="projects" class="section-pad">
+    <div class="wrap">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">Selected work (add cards/links here)</p>
+
+      <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:14px;padding:18px;box-shadow:0 12px 35px rgba(0,0,0,.35);">
+          <div style="font-weight:700;margin-bottom:6px;">Project One</div>
+          <div style="color:var(--muted);line-height:1.6;">One sentence description. Add a link to paper/code/demo.</div>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:14px;padding:18px;box-shadow:0 12px 35px rgba(0,0,0,.35);">
+          <div style="font-weight:700;margin-bottom:6px;">Project Two</div>
+          <div style="color:var(--muted);line-height:1.6;">One sentence description. Add a link to paper/code/demo.</div>
+        </div>
+        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:14px;padding:18px;box-shadow:0 12px 35px rgba(0,0,0,.35);">
+          <div style="font-weight:700;margin-bottom:6px;">Project Three</div>
+          <div style="color:var(--muted);line-height:1.6;">One sentence description. Add a link to paper/code/demo.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKED WITH -->
+  <section class="section-pad">
+    <div class="wrap">
+      <h2 class="section-title">Worked With</h2>
+      <p class="section-subtitle">Organizations and industry partners where I have collaborated</p>
+
+      <div class="logos">
+        <!-- Put logo images in assets/ and update filenames -->
+        <div class="logo-card"><img src="assets/logo1.png" alt="Partner 1"></div>
+        <div class="logo-card"><img src="assets/logo2.png" alt="Partner 2"></div>
+        <div class="logo-card"><img src="assets/logo3.png" alt="Partner 3"></div>
+        <div class="logo-card"><img src="assets/logo4.png" alt="Partner 4"></div>
+      </div>
+
+      <div class="contact-row">
+        <div class="contact-chip">
+          <div class="icon" aria-hidden="true">📞</div>
+          <span>+1 (682) 560-3441</span>
+        </div>
+
+        <div class="contact-chip">
+          <div class="icon" aria-hidden="true">✉️</div>
+          <a href="mailto:aks.fnu@gmail.com">aks.fnu@gmail.com</a>
+        </div>
+
+        <div class="contact-chip">
+          <div class="icon" aria-hidden="true">📍</div>
+          <span>Corpus Christi, TX</span>
+        </div>
+      </div>
+
+      <div class="thanks">Thank You for Visiting</div>
+    </div>
+  </section>
+
 </body>
 </html>
