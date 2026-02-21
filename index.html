@@ -38,7 +38,7 @@
       z-index:999;
       display:flex;
       align-items:center;
-      justify-content:space-between;
+      justify-content: center;
       padding:18px 28px;
       background: rgba(0,0,0,.55);
       backdrop-filter: blur(10px);
@@ -77,41 +77,77 @@
     .spacer-top{ height:82px; } /* to offset fixed nav */
 
     /* ===== HERO ===== */
-    .hero{
-      min-height: calc(100vh - 82px);
-      display:flex;
-      align-items:center;
-      padding: 26px 0 44px;
-    }
-    .hero-grid{
-      width:100%;
-      display:grid;
-      grid-template-columns: 1.1fr .9fr;
-      gap: 36px;
-      align-items:center;
-    }
-    .hero h1{
-      font-size: clamp(44px, 5vw, 72px);
-      font-weight: 700;
-      line-height: 1.03;
-      letter-spacing: .2px;
-      margin-bottom: 18px;
-    }
-    .hero .subtitle{
-      font-size: clamp(16px, 1.6vw, 22px);
-      line-height: 1.55;
-      color: var(--muted);
-      max-width: 640px;
-    }
-    .hl{
-      color: #22d3ee; /* teal-ish like screenshot */
-      font-weight: 650;
-    }
-    .hero-right{
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
+    .hero-new{
+  position:relative;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  background:url("assets/portrait.jpg") center/cover no-repeat;
+}
+
+.hero-overlay{
+  position:absolute;
+  inset:0;
+  background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.85));
+}
+
+.hero-content-new{
+  position:relative;
+  z-index:2;
+  max-width:900px;
+  padding:20px;
+}
+
+.hero-content-new h1{
+  font-size:clamp(48px,6vw,80px);
+  font-weight:700;
+  margin-bottom:20px;
+}
+
+.hero-content-new p{
+  font-size:clamp(18px,2vw,24px);
+  color:rgba(255,255,255,0.85);
+  margin-bottom:40px;
+  line-height:1.6;
+}
+
+.hero-buttons{
+  display:flex;
+  gap:20px;
+  justify-content:center;
+  flex-wrap:wrap;
+}
+
+.btn-main{
+  padding:14px 28px;
+  background:linear-gradient(90deg,#004e92,#0a74da);
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.btn-main:hover{
+  transform:scale(1.05);
+}
+
+.btn-outline{
+  padding:14px 28px;
+  border:2px solid #fff;
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  font-weight:600;
+  transition:0.3s ease;
+}
+
+.btn-outline:hover{
+  background:#fff;
+  color:#000;
+}
     .portrait{
       width:min(420px, 85vw);
       aspect-ratio: 1/1.15;
@@ -314,15 +350,6 @@
 <body>
   <!-- NAV -->
   <header class="nav">
-    <!-- Left brand area (optional). You can customize or remove. -->
-    <div class="brand">
-      <div class="site-name">Enter site name</div>
-      <a class="logo-btn" href="#home" aria-label="Home">
-        <span style="display:inline-block;width:18px;height:18px;border-radius:4px;background:rgba(255,255,255,.25);border:1px solid rgba(255,255,255,.25)"></span>
-        Add logo
-      </a>
-    </div>
-
     <nav class="nav-links" aria-label="Primary navigation">
       <a href="#home">Home</a>
       <a href="#about">About</a>
@@ -335,28 +362,24 @@
   <div class="spacer-top"></div>
 
   <!-- HERO -->
-  <section id="home" class="hero">
-    <div class="wrap">
-      <div class="hero-grid">
-        <div>
-          <h1>Ashutosh<br/>Kumar</h1>
-          <p class="subtitle">
-            Advancing <span class="hl">AI-Driven Modeling</span>, <br/>
-            <span class="hl">Nanotechnology</span>, and <span class="hl">Microfluidics</span>
-          </p>
-        </div>
+  <section id="home" class="hero-new">
+  <div class="hero-overlay"></div>
 
-        <div class="hero-right">
-          <div class="portrait">
-            <!-- Put your image in the repo and set the path here.
-                 Example: create a folder "assets" and upload "portrait.jpg"
-                 Then use: assets/portrait.jpg -->
-            <img src="assets/portrait.jpg" alt="Portrait" />
-          </div>
-        </div>
-      </div>
+  <div class="hero-content-new">
+    <h1>Ashutosh Kumar</h1>
+
+    <p>
+      Advancing <span class="hl">AI-Driven Modeling</span>,
+      <span class="hl">Nanotechnology</span>, and
+      <span class="hl">Microfluidics</span>
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-main">View Projects</a>
+      <a href="#contact" class="btn-outline">Contact Me</a>
     </div>
-  </section>
+  </div>
+</section>
 
   <div class="down-arrow">
     <a href="#affiliation" aria-label="Scroll down">⌄</a>
