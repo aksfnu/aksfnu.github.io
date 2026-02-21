@@ -1,83 +1,76 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Ashutosh Kumar | Portfolio</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Ashutosh Kumar | Portfolio</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --bg:#000;
-      --panel:#0f0f0f;
-      --text:#fff;
-      --muted:rgba(255,255,255,.78);
-      --line:rgba(255,255,255,.55);
-      --accent:#00c6ff;
-      --shadow: 0 18px 60px rgba(0,0,0,.55);
-    }
+<style>
+:root{
+  --bg:#000;
+  --text:#fff;
+  --muted:rgba(255,255,255,.75);
+  --line:rgba(255,255,255,.12);
+}
 
-    *{ box-sizing:border-box; margin:0; padding:0; }
-    html{ scroll-behavior:smooth; }
-    body{
-      font-family:'Montserrat', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(80% 90% at 70% 20%, rgba(255,255,255,.08), transparent 55%),
-                  radial-gradient(70% 80% at 15% 30%, rgba(0,198,255,.10), transparent 55%),
-                  var(--bg);
-      color:var(--text);
-      overflow-x:hidden;
-    }
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:#000;
+  color:#fff;
+}
 
-    /* ===== NAV ===== */
-    .nav{
-      position:fixed;
-      top:0; left:0; right:0;
-      z-index:999;
-      display:flex;
-      align-items:center;
-      justify-content: center;
-      padding:18px 28px;
-      background: rgba(0,0,0,.55);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(255,255,255,.08);
-    }
-    .brand{
-      display:flex;
-      flex-direction:column;
-      gap:6px;
-      min-width:180px;
-    }
-    .brand .logo-btn:hover{ background:rgba(255,255,255,.10); }
+/* ================= NAV ================= */
+.nav{
+  position:fixed;
+  top:0;left:0;right:0;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px 0;
+  background:rgba(0,0,0,.65);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
 
-    .nav-links{
-      display:flex;
-      align-items:center;
-      gap:28px;
-      flex-wrap:wrap;
-      justify-content:flex-end;
-    }
-    .nav-links a{
-      color:rgba(255,255,255,.90);
-      text-decoration:none;
-      font-weight:500;
-      transition:.2s ease;
-    }
-    .nav-links a:hover{ color:#fff; text-shadow: 0 0 18px rgba(0,198,255,.35); }
+.nav-links{
+  display:flex;
+  gap:35px;
+}
 
-    /* ===== LAYOUT ===== */
-    section{ width:100%; }
-    .wrap{
-      max-width:1200px;
-      margin:0 auto;
-      padding:0 22px;
-    }
-    .spacer-top{ height:82px; } /* to offset fixed nav */
+.nav-links a{
+  color:rgba(255,255,255,.9);
+  text-decoration:none;
+  font-weight:500;
+  position:relative;
+  transition:.3s;
+}
 
-    /* ===== HERO ===== */
-    .hero-new{
+.nav-links a::after{
+  content:"";
+  position:absolute;
+  left:0;bottom:-6px;
+  width:0%;
+  height:2px;
+  background:#0a74da;
+  transition:.3s;
+}
+
+.nav-links a:hover::after{
+  width:100%;
+}
+
+.nav-links a:hover{
+  color:#fff;
+}
+
+.spacer{height:90px}
+
+/* ================= HERO ================= */
+.hero{
   position:relative;
   min-height:100vh;
   display:flex;
@@ -87,30 +80,38 @@
   background:url("assets/portrait.jpg") center/cover no-repeat;
 }
 
-.hero-overlay{
+.hero::after{
+  content:"";
   position:absolute;
   inset:0;
-  background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.85));
+  background:linear-gradient(to bottom,rgba(0,0,0,.75),rgba(0,0,0,.9));
 }
 
-.hero-content-new{
+.hero-content{
   position:relative;
   z-index:2;
   max-width:900px;
   padding:20px;
 }
 
-.hero-content-new h1{
+.hero h1{
   font-size:clamp(48px,6vw,80px);
-  font-weight:700;
   margin-bottom:20px;
+  font-weight:700;
 }
 
-.hero-content-new p{
+.hero p{
   font-size:clamp(18px,2vw,24px);
-  color:rgba(255,255,255,0.85);
-  margin-bottom:40px;
+  color:var(--muted);
+  margin-bottom:45px;
   line-height:1.6;
+}
+
+.highlight{
+  background:linear-gradient(90deg,#004e92,#0a74da,#16c3a8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  font-weight:600;
 }
 
 .hero-buttons{
@@ -120,357 +121,198 @@
   flex-wrap:wrap;
 }
 
-.btn-main{
+.btn{
   padding:14px 28px;
-  background:linear-gradient(90deg,#004e92,#0a74da);
-  color:#fff;
-  text-decoration:none;
   border-radius:8px;
+  text-decoration:none;
   font-weight:600;
-  transition:0.3s ease;
+  transition:.3s ease;
 }
 
-.btn-main:hover{
+.btn-primary{
+  background:linear-gradient(90deg,#004e92,#0a74da);
+  color:#fff;
+}
+
+.btn-primary:hover{
   transform:scale(1.05);
 }
 
 .btn-outline{
-  padding:14px 28px;
   border:2px solid #fff;
   color:#fff;
-  text-decoration:none;
-  border-radius:8px;
-  font-weight:600;
-  transition:0.3s ease;
 }
 
 .btn-outline:hover{
   background:#fff;
   color:#000;
 }
-    .portrait{
-      width:min(420px, 85vw);
-      aspect-ratio: 1/1.15;
-      border-radius: 22px;
-      overflow:hidden;
-      box-shadow: var(--shadow);
-      border:1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.04);
-      position:relative;
-    }
-    .portrait img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      object-position:center;
-      display:block;
-      filter: contrast(1.02) saturate(1.02);
-    }
-    .portrait::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(70% 90% at 50% 20%, transparent 40%, rgba(0,0,0,.35) 100%);
-      pointer-events:none;
-    }
 
-    .down-arrow{
-      display:flex;
-      justify-content:center;
-      padding: 6px 0 24px;
-      opacity:.8;
-    }
-    .down-arrow a{
-      width:44px; height:44px;
-      display:grid; place-items:center;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(255,255,255,.05);
-      text-decoration:none;
-      color:#fff;
-      transition:.2s ease;
-    }
-    .down-arrow a:hover{ transform: translateY(2px); background:rgba(255,255,255,.09); }
+/* ================= SECTIONS ================= */
+.section{
+  padding:80px 20px;
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
 
-    /* ===== SEPARATOR SECTION STYLE ===== */
-    .section-pad{
-      padding: 56px 0 70px;
-      position:relative;
-    }
-    .section-pad::before,
-    .section-pad::after{
-      content:"";
-      position:absolute;
-      left:0; right:0;
-      height:2px;
-      background: var(--line);
-      opacity:.85;
-    }
-    .section-pad::before{ top:0; }
-    .section-pad::after{ bottom:0; }
+.section h2{
+  text-align:center;
+  font-size:clamp(28px,3vw,40px);
+  margin-bottom:10px;
+}
 
-    .section-title{
-      text-align:center;
-      font-size: clamp(28px, 3vw, 40px);
-      font-weight:700;
-      margin-bottom: 10px;
-    }
-    .section-subtitle{
-      text-align:center;
-      color: var(--muted);
-      font-size: 16px;
-      margin-bottom: 34px;
-    }
+.section-sub{
+  text-align:center;
+  color:var(--muted);
+  margin-bottom:40px;
+}
 
-    /* ===== AFFILIATIONS PILLS ===== */
-    .pill-grid{
-      display:grid;
-      grid-template-columns: repeat(2, minmax(240px, 1fr));
-      gap:18px;
-      max-width: 980px;
-      margin: 0 auto;
-    }
-    .pill{
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-align:center;
-      padding: 16px 18px;
-      border-radius: 14px;
-      font-weight: 650;
-      color:#fff;
-      text-decoration:none;
-      box-shadow: 0 10px 25px rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.10);
-      transition: .2s ease;
-    }
-    .pill:hover{ transform: translateY(-2px); filter: brightness(1.04); }
+/* ================= PILLS ================= */
+.pill-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:0 auto;
+}
 
-    .pill.teal { background: linear-gradient(90deg, #006d77, #007f6a); }
-    .pill.red  { background: linear-gradient(90deg, #7a0f0f, #b11212); }
-    .pill.gray { background: linear-gradient(90deg, #3b3f46, #555a63); }
-    .pill.navy { background: linear-gradient(90deg, #0b2b52, #103c72); }
-    .pill.blue { background: linear-gradient(90deg, #0a3b8f, #0a5bd6); }
+.pill{
+  padding:16px;
+  border-radius:12px;
+  text-align:center;
+  font-weight:600;
+  color:#fff;
+  text-decoration:none;
+  transition:.3s;
+}
 
-    .pill.full{
-      grid-column: 1 / -1;
-      max-width: 520px;
-      margin: 0 auto;
-    }
+.pill:hover{transform:translateY(-4px)}
 
-    /* ===== WORKED WITH LOGOS ===== */
-    .logos{
-      display:grid;
-      grid-template-columns: repeat(4, minmax(160px, 1fr));
-      gap: 24px;
-      align-items:center;
-      justify-items:center;
-      max-width: 1050px;
-      margin: 22px auto 0;
-    }
-    .logo-card{
-      width: 100%;
-      max-width: 260px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.06);
-      border: 1px solid rgba(255,255,255,.12);
-      box-shadow: 0 12px 35px rgba(0,0,0,.35);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      min-height: 92px;
-    }
-    .logo-card img{
-      max-width: 100%;
-      max-height: 56px;
-      object-fit:contain;
-      display:block;
-      filter: brightness(1.02);
-    }
+.teal{background:linear-gradient(90deg,#006d77,#007f6a)}
+.red{background:linear-gradient(90deg,#7a0f0f,#b11212)}
+.gray{background:linear-gradient(90deg,#3b3f46,#555a63)}
+.navy{background:linear-gradient(90deg,#0b2b52,#103c72)}
+.blue{background:linear-gradient(90deg,#0a3b8f,#0a5bd6)}
 
-    /* ===== CONTACT STRIP ===== */
-    .contact-row{
-      display:grid;
-      grid-template-columns: repeat(3, minmax(220px, 1fr));
-      gap: 18px;
-      max-width: 980px;
-      margin: 26px auto 0;
-    }
-    .contact-chip{
-      display:flex;
-      align-items:center;
-      gap: 12px;
-      padding: 14px 16px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.14);
-      background: rgba(255,255,255,.05);
-      box-shadow: 0 12px 35px rgba(0,0,0,.35);
-    }
-    .icon{
-      width: 36px; height: 36px;
-      display:grid; place-items:center;
-      border-radius: 10px;
-      background: rgba(0,198,255,.12);
-      border: 1px solid rgba(0,198,255,.20);
-      flex: 0 0 auto;
-    }
-    .contact-chip a,
-    .contact-chip span{
-      color:#fff;
-      text-decoration:none;
-      font-weight: 600;
-      letter-spacing: .2px;
-    }
-    .contact-chip a:hover{ text-decoration:underline; }
+/* ================= PROJECT CARDS ================= */
+.project-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:20px;
+  max-width:1100px;
+  margin:0 auto;
+}
 
-    /* ===== THANK YOU ===== */
-    .thanks{
-      text-align:center;
-      font-size: clamp(34px, 4vw, 64px);
-      font-weight: 750;
-      color: #ff3b30;
-      margin-top: 34px;
-      letter-spacing: .2px;
-    }
+.project-card{
+  padding:20px;
+  border-radius:12px;
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--line);
+  transition:.3s;
+}
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 980px){
-      .hero-grid{ grid-template-columns: 1fr; }
-      .hero-right{ order:-1; }
-      .brand{ display:none; } /* like your Google Sites screenshot: left area can be empty */
-      .nav{ justify-content:flex-end; }
-      .logos{ grid-template-columns: repeat(2, minmax(160px, 1fr)); }
-      .pill-grid{ grid-template-columns: 1fr; }
-      .pill.full{ max-width: 100%; }
-      .contact-row{ grid-template-columns: 1fr; }
-    }
-  </style>
+.project-card:hover{
+  transform:translateY(-6px);
+  background:rgba(255,255,255,.08);
+}
+
+/* ================= CONTACT ================= */
+.contact{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:20px;
+  max-width:1000px;
+  margin:40px auto 0;
+}
+
+.contact-item{
+  padding:15px;
+  border-radius:12px;
+  border:1px solid var(--line);
+  background:rgba(255,255,255,.05);
+  text-align:center;
+}
+
+.thanks{
+  text-align:center;
+  margin-top:50px;
+  font-size:clamp(32px,4vw,60px);
+  color:#ff3b30;
+  font-weight:700;
+}
+
+/* ================= MOBILE ================= */
+@media(max-width:768px){
+  .nav-links{gap:20px;font-size:14px}
+}
+</style>
 </head>
 
 <body>
-  <!-- NAV -->
-  <header class="nav">
-    <nav class="nav-links" aria-label="Primary navigation">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="https://scholar.google.com/" target="_blank" rel="noopener noreferrer">Google Scholar</a>
-      <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-    </nav>
-  </header>
 
-  <div class="spacer-top"></div>
+<header class="nav">
+  <nav class="nav-links">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#projects">Projects</a>
+    <a href="https://scholar.google.com/" target="_blank">Google Scholar</a>
+    <a href="https://linkedin.com/" target="_blank">LinkedIn</a>
+  </nav>
+</header>
 
-  <!-- HERO -->
-  <section id="home" class="hero-new">
-  <div class="hero-overlay"></div>
+<div class="spacer"></div>
 
-  <div class="hero-content-new">
+<section id="home" class="hero">
+  <div class="hero-content">
     <h1>Ashutosh Kumar</h1>
-
     <p>
-      Advancing <span class="hl">AI-Driven Modeling</span>,
-      <span class="hl">Nanotechnology</span>, and
-      <span class="hl">Microfluidics</span>
+      Advancing <span class="highlight">AI-Driven Modeling</span>,
+      <span class="highlight">Nanotechnology</span>, and
+      <span class="highlight">Microfluidics</span>
     </p>
-
     <div class="hero-buttons">
-      <a href="#projects" class="btn-main">View Projects</a>
-      <a href="#contact" class="btn-outline">Contact Me</a>
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="#contact" class="btn btn-outline">Contact Me</a>
     </div>
   </div>
 </section>
 
-  <div class="down-arrow">
-    <a href="#affiliation" aria-label="Scroll down">⌄</a>
+<section id="about" class="section">
+  <h2>About</h2>
+  <p class="section-sub">Researcher focused on AI, nanotechnology and microfluidic systems.</p>
+</section>
+
+<section class="section">
+  <h2>Academic Affiliation</h2>
+  <p class="section-sub">Institutions I have studied or trained</p>
+  <div class="pill-grid">
+    <a class="pill teal" href="#">Texas A&M University</a>
+    <a class="pill red" href="#">Cornell University</a>
+    <a class="pill gray" href="#">FDA – NCTR</a>
+    <a class="pill navy" href="#">University of Rhode Island</a>
+    <a class="pill blue" href="#">UT Arlington</a>
   </div>
+</section>
 
-  <!-- ABOUT (optional section content; keep as placeholder) -->
-  <section id="about" class="section-pad">
-    <div class="wrap">
-      <h2 class="section-title">About</h2>
-      <p class="section-subtitle">Short bio / research interests / summary.</p>
+<section id="projects" class="section">
+  <h2>Projects</h2>
+  <p class="section-sub">Selected Work</p>
+  <div class="project-grid">
+    <div class="project-card"><strong>Project One</strong><br>Short description.</div>
+    <div class="project-card"><strong>Project Two</strong><br>Short description.</div>
+    <div class="project-card"><strong>Project Three</strong><br>Short description.</div>
+  </div>
+</section>
 
-      <div style="max-width:900px;margin:0 auto;color:var(--muted);line-height:1.7;text-align:center;">
-        Replace this text with your own bio. Keep it concise: 3–6 sentences describing your role, focus areas,
-        and what you are currently building/researching.
-      </div>
-    </div>
-  </section>
-
-  <!-- ACADEMIC AFFILIATION -->
-  <section id="affiliation" class="section-pad">
-    <div class="wrap">
-      <h2 class="section-title">Academic Affiliation</h2>
-      <p class="section-subtitle">Institutions I have studied or trained</p>
-
-      <div class="pill-grid">
-        <a class="pill teal" href="#" target="_blank" rel="noopener noreferrer">Texas A&amp;M University</a>
-        <a class="pill red" href="#" target="_blank" rel="noopener noreferrer">Cornell University</a>
-        <a class="pill gray" href="#" target="_blank" rel="noopener noreferrer">FDA – National Center for Toxicological Research</a>
-        <a class="pill navy" href="#" target="_blank" rel="noopener noreferrer">University of Rhode Island</a>
-        <a class="pill blue full" href="#" target="_blank" rel="noopener noreferrer">University of Texas at Arlington</a>
-      </div>
-    </div>
-  </section>
-
-  <!-- PROJECTS (placeholder) -->
-  <section id="projects" class="section-pad">
-    <div class="wrap">
-      <h2 class="section-title">Projects</h2>
-      <p class="section-subtitle">Selected work (add cards/links here)</p>
-
-      <div style="max-width:1000px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
-        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:14px;padding:18px;box-shadow:0 12px 35px rgba(0,0,0,.35);">
-          <div style="font-weight:700;margin-bottom:6px;">Project One</div>
-          <div style="color:var(--muted);line-height:1.6;">One sentence description. Add a link to paper/code/demo.</div>
-        </div>
-        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:14px;padding:18px;box-shadow:0 12px 35px rgba(0,0,0,.35);">
-          <div style="font-weight:700;margin-bottom:6px;">Project Two</div>
-          <div style="color:var(--muted);line-height:1.6;">One sentence description. Add a link to paper/code/demo.</div>
-        </div>
-        <div style="border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);border-radius:14px;padding:18px;box-shadow:0 12px 35px rgba(0,0,0,.35);">
-          <div style="font-weight:700;margin-bottom:6px;">Project Three</div>
-          <div style="color:var(--muted);line-height:1.6;">One sentence description. Add a link to paper/code/demo.</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- WORKED WITH -->
-  <section class="section-pad">
-    <div class="wrap">
-      <h2 class="section-title">Worked With</h2>
-      <p class="section-subtitle">Organizations and industry partners where I have collaborated</p>
-
-      <div class="logos">
-        <!-- Put logo images in assets/ and update filenames -->
-        <div class="logo-card"><img src="assets/logo1.png" alt="Partner 1"></div>
-        <div class="logo-card"><img src="assets/logo2.png" alt="Partner 2"></div>
-        <div class="logo-card"><img src="assets/logo3.png" alt="Partner 3"></div>
-        <div class="logo-card"><img src="assets/logo4.png" alt="Partner 4"></div>
-      </div>
-
-      <div class="contact-row">
-        <div class="contact-chip">
-          <div class="icon" aria-hidden="true">📞</div>
-          <span>+1 (682) 560-3441</span>
-        </div>
-
-        <div class="contact-chip">
-          <div class="icon" aria-hidden="true">✉️</div>
-          <a href="mailto:aks.fnu@gmail.com">aks.fnu@gmail.com</a>
-        </div>
-
-        <div class="contact-chip">
-          <div class="icon" aria-hidden="true">📍</div>
-          <span>Corpus Christi, TX</span>
-        </div>
-      </div>
-
-      <div class="thanks">Thank You for Visiting</div>
-    </div>
-  </section>
+<section id="contact" class="section">
+  <h2>Contact</h2>
+  <div class="contact">
+    <div class="contact-item">📞 +1 (682) 560-3441</div>
+    <div class="contact-item">✉️ aks.fnu@gmail.com</div>
+    <div class="contact-item">📍 Corpus Christi, TX</div>
+  </div>
+  <div class="thanks">Thank You for Visiting</div>
+</section>
 
 </body>
 </html>
